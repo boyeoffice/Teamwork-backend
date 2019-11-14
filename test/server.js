@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const app = require("../app");
+const app = require("../src/app");
 const request = require('supertest');
 
 describe('Test server /index', () => {
