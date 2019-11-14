@@ -4,7 +4,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
-	res.status(200).send('Hello Api');
+	res.status(200).send('Welcome to teamwork project');
 });
 
 module.exports = app;
