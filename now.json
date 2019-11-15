@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "builds": [{ "src": "src/index.js", "use": "@now/node-server" }],
+  "builds": [{ "src": "./dist/index.js", "use": "@now/node-server" }],
   "routes": [
     {
       "src": "/users",
-      "dest": "/index.js",
+      "dest": "/dist/index.js",
       "methods": ["GET"]
     }
   ]
