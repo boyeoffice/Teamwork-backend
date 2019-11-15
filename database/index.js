@@ -1,7 +1,7 @@
 const pg = require('pg');
-require('dotenv').config();
+//require('dotenv').config();
 
-let conString = process.env.DB_URL //Can be found in the Details page
+let conString = "postgres://behfpwvq:kwXCV5-tE9SXflcGj2ZkxegU68RJJdOr@raja.db.elephantsql.com:5432/behfpwvq" //Can be found in the Details page
 let client = new pg.Client(conString);
 client.connect(function(err) {
   if(err) {
