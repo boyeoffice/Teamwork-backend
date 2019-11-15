@@ -4,7 +4,10 @@ const app = express();
 
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
-	res.status(200).send('Welcome to teamwork project');
+	res.status(200).send({
+		status: 200,
+		message: 'Welcome to teamwork project'
+	});
 });
 app.get("/users", (req, res) => {
   res.json([
