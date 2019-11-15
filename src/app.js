@@ -13,4 +13,4 @@ app.get("/users", (req, res) => {
   ]);
 });
 
-module.exports = app;
+export default app;
