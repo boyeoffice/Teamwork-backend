@@ -1,3 +1,4 @@
 exports.login = (req,res) => {
-	res.status(200).send('It working');
+	const {email, password} = req.body;
+	res.status(200).send({data: email});
 }
