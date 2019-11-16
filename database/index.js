@@ -16,3 +16,5 @@ client.connect(function(err) {
     client.end();
   });
 });
+
+module.exports = client;
