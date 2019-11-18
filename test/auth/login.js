@@ -13,11 +13,9 @@ describe('Test login', () => {
             .set('accept', 'application/json')
             .send({ ...validDetails })
             .end((err, res) => {
-                console.log(res.body)
                 expect(res.statusCode).to.equal(200);
                 expect(res.body).to.include.keys('data');
-                //expect(res.body.data).to.include.keys('user');
-
+                expect(res.body.data).to.include.keys('userId');
                 done(err);
             });
    });
