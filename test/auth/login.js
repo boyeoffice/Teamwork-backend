@@ -4,7 +4,7 @@ const request = require('supertest');
 const url = '/v1/auth/signin';
 const mockData = require('../utils/userDummy');
 
-const {validDetails} = mockData.login
+const {validDetails, invalidDetails} = mockData.login
 
 describe('Test login', () => {
 	it('should login a valid user', (done) => {
@@ -19,4 +19,18 @@ describe('Test login', () => {
                 done(err);
             });
    });
+});
+
+describe('###Wrong input', () => {
+        it('should return error for invalid details', (done) => {
+            request(app)
+                .post(url)
+                .set('accept', 'application/json')
+                .send({ ...invalidDetails })
+                .end((err, res) => {
+                    expect(res.statusCode).to.equal(401);
+                    expect(res.body).to.include.keys('error');
+                    done(err);
+                });
+       });
 });
