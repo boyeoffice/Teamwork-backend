@@ -14,7 +14,7 @@ exports.login = async (req, res) => {
       }
       const isPasswordValid = verifyPassword(password, user.rows[0].password);
         if (!isPasswordValid) {
-            return res.status(401).json({
+          return res.status(401).json({
                 status: 'error',
                 error: 'Email/Password do not match',
             });
