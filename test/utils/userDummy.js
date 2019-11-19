@@ -3,8 +3,12 @@ const login = {
 		email: 'admin@example.com',
 		password: '123456'
 	},
-	invalidDetails: {
+	invalidEmail: {
       email: 'april@example.com',
+      password: '123456'
+  },
+  invalidPassword: {
+      email: 'admin@example.com',
       password: 'fool'
   }
 }

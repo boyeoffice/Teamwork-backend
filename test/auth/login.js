@@ -4,7 +4,7 @@ const request = require('supertest');
 const url = '/v1/auth/signin';
 const mockData = require('../utils/userDummy');
 
-const {validDetails, invalidDetails} = mockData.login
+const {validDetails, invalidEmail, invalidPassword} = mockData.login
 
 describe('Test login', () => {
 	it('should login a valid user', (done) => {
@@ -21,13 +21,29 @@ describe('Test login', () => {
    });
 });
 
-describe('###Wrong input', () => {
+describe('###Wrong Email', () => {
         it('should return error for invalid details', (done) => {
             request(app)
                 .post(url)
                 .set('accept', 'application/json')
-                .send({ ...invalidDetails })
+                .send({ ...invalidEmail })
                 .end((err, res) => {
+                    console.log(res.body)
+                    expect(res.statusCode).to.equal(401);
+                    expect(res.body).to.include.keys('error');
+                    done(err);
+                });
+       });
+});
+
+describe('###Wrong Password', () => {
+        it('should return error for invalid details', (done) => {
+            request(app)
+                .post(url)
+                .set('accept', 'application/json')
+                .send({ ...invalidPassword })
+                .end((err, res) => {
+                    console.log(res.body)
                     expect(res.statusCode).to.equal(401);
                     expect(res.body).to.include.keys('error');
                     done(err);
