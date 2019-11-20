@@ -19,8 +19,26 @@ const createUser = {
     lastname: ''
   },
   validDetails: {
-    firstname: 'Olakunle',
-    lastname: 'Boye'
+    first_name: 'John',
+    last_name: 'Doe',
+    email: 'john@example.com',
+    password: '123456',
+    job_role: 'Software Developer',
+    department: 'ICT',
+    is_admin: false,
+    gender: 'Male',
+    address: '23, Saint John Street'
+  },
+  invalidDetails: {
+    first_name: 'John',
+    last_name: 'Doe',
+    email: 'admin@example.com',
+    password: '123456',
+    job_role: 'Software Developer',
+    department: 'ICT',
+    is_admin: false,
+    gender: 'Male',
+    address: '23, Saint John Street'
   }
 }
 

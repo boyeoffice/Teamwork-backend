@@ -19,7 +19,7 @@ const createUserRequest = (req, res, next) => {
     department: 'required|string',
     gender: 'required|string',
     address: 'required|string',
-    is_admin: 'required|string',
+    is_admin: 'required',
     first_name: 'required|string|min:3|max:20',
     last_name: 'required|string|min:3|max:20',
     email: 'required|email'
