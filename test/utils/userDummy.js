@@ -13,6 +13,18 @@ const login = {
   }
 }
 
+const createUser = {
+  emptyData: {
+    firstname: '',
+    lastname: ''
+  },
+  validDetails: {
+    firstname: 'Olakunle',
+    lastname: 'Boye'
+  }
+}
+
 module.exports = {
-	login
+	login,
+  createUser
 }
