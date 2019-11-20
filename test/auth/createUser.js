@@ -5,16 +5,36 @@ const request = require('supertest');
 const url = '/v1/auth/create-user';
 const mockData = require('../utils/userDummy');
 const db = require('../../database');
+var agent = request.agent(app);
+let token;
 
 const {emptyData, validDetails, invalidDetails} = mockData.createUser
+const userCredentials = {
+  email: 'admin@example.com', 
+  password: '123456'
+}
+
+before(function(done){
+  request(app)
+    .post('/v1/auth/signin')
+    .send(userCredentials)
+    .end(function(err, response){
+       // console.log(response)
+       token = 'Bearer ' + response.body.data.token
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+});
 
 describe('Empty data', () => {
 	it('should return value required', (done) => {
         request(app)
             .post(url)
             .set('accept', 'application/json')
+            .set('Authorization', token)
             .send({ ...emptyData })
             .end((err, res) => {
+                //console.log(res)
                 expect(res.statusCode).to.equal(422);
                 expect(res.body).to.include.keys('data');
                 done(err);
@@ -32,6 +52,7 @@ describe('Create new user', () => {
         request(app)
             .post(url)
             .set('accept', 'application/json')
+            .set('Authorization', token)
             .send({ ...validDetails })
             .end((err, res) => {
             	console.log(res.body)
@@ -47,6 +68,7 @@ describe('User already registered', () => {
         request(app)
             .post(url)
             .set('accept', 'application/json')
+            .set('Authorization', token)
             .send({ ...invalidDetails })
             .end((err, res) => {
                 expect(res.statusCode).to.equal(422);
