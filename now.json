@@ -8,9 +8,14 @@
  ],
   "routes": [
     {
-      "src": "/users",
+      "src": "/v1/auth/signin",
       "dest": "/index.js",
-      "methods": ["GET"]
+      "methods": ["POST"]
+    },
+    {
+      "src": "/v1/auth/create-user",
+      "dest": "/index.js",
+      "methods": ["POST"]
     }
   ]
 }
