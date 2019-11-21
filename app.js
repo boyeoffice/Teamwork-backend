@@ -6,9 +6,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-const authSign = require('./routes/auth')
+const authRoute = require('./routes/auth');
+const articleRoute = require('./routes/article');
 
-app.use('/v1/auth', authSign);
+app.use('/v1/auth', authRoute);
+app.use('/v1/articles', articleRoute);
 
 app.get('/', (req, res) => {
 	res.status(200).send({
