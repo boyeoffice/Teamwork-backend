@@ -8,6 +8,7 @@ const articleCtrl = require('../controllers/article');
 const createArticleRequest = require('../validations/createArticleRq');
 const auth = require('../middlewares/auth');
 
+
 router.post('/', auth, createArticleRequest, articleCtrl.createArticle);
 
 module.exports = router;
