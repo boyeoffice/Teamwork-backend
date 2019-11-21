@@ -16,6 +16,26 @@
       "src": "/v1/auth/create-user",
       "dest": "/index.js",
       "methods": ["POST"]
+    },
+    {
+      "src": "/v1/articles",
+      "dest": "/index.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/v1/articles",
+      "dest": "/index.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/v1/articles",
+      "dest": "/index.js",
+      "methods": ["PUT"]
+    },
+    {
+      "src": "/v1/articles",
+      "dest": "/index.js",
+      "methods": ["DELETE"]
     }
   ]
 }
