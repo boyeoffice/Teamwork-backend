@@ -4,9 +4,10 @@ const date = `${today.getFullYear()}-${(today.getMonth() + 1)}-${+today.getDate(
 const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 const dateTime = `${date} ${time}`;
 const randomId = require('../helpers/randomNumber');
+const post_type = 'article';
 
 exports.getAllArticles = async (req, res) => {
-    const articles = await db.query('SELECT * FROM articles ORDER BY createdon DESC');
+    const articles = await db.query(`SELECT * FROM posts WHERE postType = '${post_type}' ORDER BY createdon DESC`);
     return res.status(200).json({
       status: 'success',
       data: articles.rows,
@@ -16,7 +17,7 @@ exports.getAllArticles = async (req, res) => {
 exports.getSingleArticle = async (req, res) => {
     try {
       const {articleId} = req.params;
-    const article = await db.query(`SELECT * FROM articles WHERE articleId = ${articleId}`);
+    const article = await db.query(`SELECT * FROM posts WHERE postId = ${articleId}`);
     if (article.rows.length === 0) {
       return res.status(404).json({
         status: 'error',
@@ -48,8 +49,8 @@ exports.createArticle = async (req, res) => {
     const authorId = req.user.userId;
     //console.log(authorId);
     await db.query(
-      `INSERT INTO articles (articleId, title, article, createdOn, categoryId, authorId) 
-        VALUES ($1, $2, $3, $4, $5, $6)`, [articleId, title, content, createdOn, category_id, authorId],
+      `INSERT INTO posts (postId, title, article, createdOn, categoryId, authorId, postType) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7)`, [articleId, title, content, createdOn, category_id, authorId, post_type],
     );
 	res.status(201).json({
 		status: 'success',
@@ -83,7 +84,7 @@ exports.createArticle = async (req, res) => {
     try{
       const {articleId} = req.params;
 
-    const owner = await db.query(`SELECT * FROM articles WHERE articleId = ${articleId}`);
+    const owner = await db.query(`SELECT * FROM posts WHERE postId = ${articleId}`);
     if (owner.rowCount === 0) return res.status(404).json({
       status: 'error',
        error: 'Article Not Found' 
@@ -96,9 +97,9 @@ exports.createArticle = async (req, res) => {
        }
     const { title, content } = req.body;
     await db.query(
-      `UPDATE articles
+      `UPDATE posts
         SET title = $1, article = $2
-        WHERE articleId = ${articleId}`,
+        WHERE postId = ${articleId}`,
       [title, content],
     );
 
@@ -110,7 +111,7 @@ exports.createArticle = async (req, res) => {
         }
       })
     }catch(err){
-     // console.log(err)
+      //console.log(err)
     }
   }
 
@@ -118,7 +119,7 @@ exports.createArticle = async (req, res) => {
     try{
       const { articleId } = req.params;
 
-      const owner = await db.query(`SELECT * FROM articles WHERE articleId = ${articleId}`);
+      const owner = await db.query(`SELECT * FROM posts WHERE postId = ${articleId}`);
       if (owner.rowCount === 0) return res.status(404).json({ status: 'error', error: 'Article Not Found' });
       if (owner.rows[0].authorid !== req.user.userId) {
         return res.status(403).json({
@@ -126,7 +127,7 @@ exports.createArticle = async (req, res) => {
           msg: 'You cannot delete this article',
         });
       }
-      await db.query(`DELETE FROM articles WHERE articleId = ${articleId}`);
+      await db.query(`DELETE FROM posts WHERE postId = ${articleId}`);
       return res.status(202).json({
         status: 'success',
         msg: 'Article succesfully deleted'
