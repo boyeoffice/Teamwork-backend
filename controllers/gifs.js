@@ -56,3 +56,48 @@ exports.postGif = async (req, res) => {
 		console.log(err)
 	}
 }
+
+exports.getSingleGif = async (req, res) => {
+    const { gifId } = req.params;
+    const gif = await db.query(`SELECT * FROM posts WHERE postId = ${gifId}`);
+    if (gif.rows.length === 0) {
+      return res.status(404).json({
+        status: 'error',
+        error: 'Gif with the specified gifId NOT found',
+      });
+    }
+    return res.status(200).json({
+      status: 'success',
+      data: gif.rows[0],
+    });
+  }
+
+exports.deleteGif = async (req, res) => {
+    const { gifId } = req.params;
+    const gif = await db.query(`SELECT * FROM posts WHERE postId = ${gifId}`);
+    if (gif.rows.length === 0) {
+      return res.status(404).json({
+        status: 'error',
+        error: 'gif with the specified gifId NOT found',
+      });
+    }
+
+    if (gif.rows[0].authorid !== req.user.userId) {
+      return res.status(403).json({
+        status: 'error',
+        message: 'You cannot delete this Gif',
+      });
+    }
+
+    await cloudinary.v2.uploader.destroy(gif.rows[0].publicid);
+
+
+    await db.query(`DELETE FROM posts WHERE postId = ${gifId}`);
+    //if (gif.rowCount === 0) return res.status(404).json({ message: 'Gif Not Found' });
+    return res.status(202).json({
+      status: 'success',
+      data: {
+        message: 'Gif post successfully deleted',
+      },
+    });
+  }
