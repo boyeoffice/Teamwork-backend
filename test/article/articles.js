@@ -3,10 +3,12 @@ const app = require("../../app");
 const request = require('supertest');
 const url = '/v1/articles';
 const mockData = require('../utils/articleDummy');
+const commentDummy = require('../utils/commentDummy');
 const db = require('../../database');
 let token;
 let articleId;
 const { emptyData, validData } = mockData.articles;
+const { emptyComment, validComment } = commentDummy.comments;
 
 const userCredentials = {
   email: 'admin@example.com', 
@@ -91,6 +93,50 @@ describe('Fetch single article /articles', () => {
 				expect(res.body).to.include.keys('error');
         done();
 			})
+	});
+});
+
+describe('Try submit empty comment', () => {
+	it('should return response 422', (done) => {
+		request(app).post(articleId + '/comment')
+			.send({...emptyComment})
+			.set('accept', 'application/json')
+			.set('Authorization', token)
+			.end((err, res) => {
+				expect(res.statusCode).to.equal(422);
+				expect(res.body).to.include.keys('error');
+        done();
+			});
+	});
+});
+
+describe('Article not found to comment on', () => {
+	it('should return response 404', (done) => {
+		request(app).post('/v1/articles/34/comment')
+			.send({...validComment})
+			.set('accept', 'application/json')
+			.set('Authorization', token)
+			.end((err, res) => {
+				console.log(res.body)
+				expect(res.statusCode).to.equal(404);
+				expect(res.body).to.include.keys('error');
+        done();
+			});
+	});
+});
+
+describe('Comment on article', () => {
+	it('should return response 201', (done) => {
+		request(app).post(articleId + '/comment')
+			.send({...validComment})
+			.set('accept', 'application/json')
+			.set('Authorization', token)
+			.end((err, res) => {
+				console.log(res.body)
+				expect(res.statusCode).to.equal(201);
+				expect(res.body).to.include.keys('data');
+        done();
+			});
 	});
 });
 
