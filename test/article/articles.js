@@ -81,6 +81,19 @@ describe('Fetch single article /articles', () => {
 	});
 });
 
+describe('Fetch single article /articles', () => {
+	it('it should return response status 404', (done) => {
+		request(app).get('/v1/articles/56')
+			.set('Authorization', token)
+			.end((err, res) => {
+				//console.log(res.body)
+				expect(res.statusCode).to.equal(404);
+				expect(res.body).to.include.keys('error');
+        done();
+			})
+	});
+});
+
 describe('Update single article /articles', () => {
 	it('it should return response status 201', (done) => {
 		request(app).put(articleId)

@@ -132,6 +132,6 @@ exports.createArticle = async (req, res) => {
         msg: 'Article succesfully deleted'
       })
     }catch(err){
-      console.log(err)
+      //console.log(err)
     }
   }
