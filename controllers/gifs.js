@@ -14,6 +14,14 @@ cloudinary.config({
   api_secret: 'Q6_ueDxgNn5Fvb5aMI4BvtWas_0',
 });
 
+exports.getAllgifs = async (req, res) => {
+    const gifs = await db.query(`SELECT * FROM posts WHERE postType = '${post_type}' ORDER BY createdOn DESC`);
+    res.status(200).json({
+      status: 'Success',
+      data: gifs.rows,
+    });
+  }
+
 exports.postGif = async (req, res) => {
 	try{
 		const file = req.files.image;
