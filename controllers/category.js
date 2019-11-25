@@ -13,8 +13,8 @@ exports.allCategories = async (req, res) => {
 	}
 }
 
- exports.getSingleCategory = async (req, res) =>{
-    const categoryId = req.params.id;
+  exports.getSingleCategory = async (req, res) =>{
+    const { categoryId } = req.params;
     const category = await db.query(`SELECT * FROM categories WHERE categoryId = ${categoryId}`);
     if (category.rows.length === 0) {
       return res.status(404).json({
@@ -27,6 +27,7 @@ exports.allCategories = async (req, res) => {
       data: category.rows[0],
     });
   }
+
 
 
 exports.createCategory = async (req, res) => {
@@ -55,13 +56,13 @@ exports.createCategory = async (req, res) => {
 		}
 	 });
 	}catch(err){
-		//console.log(err)
+		console.log(err)
 	}
 }
 
 exports.updateSingleCategory = async (req, res) => {
 	try{
-    const categoryId = req.params.id;
+    const {categoryId} = req.params;
     const { category_name } = req.body;
    /* let { rows } = await db.query(`SELECT * FROM categories`);
     let category = rows.find(cat => cat.categoryid === parseInt(categoryId));
@@ -111,7 +112,7 @@ exports.updateSingleCategory = async (req, res) => {
   }
 
 exports.deleteSingleCategory = async (req, res) => {
-    const categoryId = req.params.id;
+    const { categoryId } = req.params;
     const category = await db.query(`DELETE FROM categories WHERE categoryId = ${categoryId}`);
     if (category.rowCount === 0) return res.status(404).json({
     	status: 'error',

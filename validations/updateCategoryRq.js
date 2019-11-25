@@ -2,7 +2,7 @@ const Validator = require('validatorjs');
 
 const updateCategoryRequest = (req, res, next) => {
   let data = {
-    category_id: req.params.id,
+    category_id: req.params.categoryId,
     category_name: req.body.category_name
   }
 

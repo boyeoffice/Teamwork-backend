@@ -12,11 +12,13 @@ const authRoute = require('./routes/auth');
 const articleRoute = require('./routes/article');
 const categoryRoute = require('./routes/category');
 const gifRoute = require('./routes/gifs');
+const feedsRoute = require('./routes/feeds'); 
 
 app.use('/v1/auth', authRoute);
 app.use('/v1/articles', articleRoute);
 app.use('/v1/category', categoryRoute);
 app.use('/v1/gifs', gifRoute);
+app.use('/v1/feed', feedsRoute);
 app.get('/', (req, res) => {
 	res.status(200).send({
 		status: 200,
