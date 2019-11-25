@@ -55,7 +55,7 @@ describe('Create new user', () => {
             .set('Authorization', token)
             .send({ ...validDetails })
             .end((err, res) => {
-            	console.log(res.body)
+            //	console.log(res.body)
                 expect(res.statusCode).to.equal(201);
                 expect(res.body).to.include.keys('data');
                 done();

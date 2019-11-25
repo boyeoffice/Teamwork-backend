@@ -28,7 +28,7 @@ describe('###Wrong Email', () => {
                 .set('accept', 'application/json')
                 .send({ ...invalidEmail })
                 .end((err, res) => {
-                    console.log(res.body)
+                   // console.log(res.body)
                     expect(res.statusCode).to.equal(401);
                     expect(res.body).to.include.keys('error');
                     done(err);
@@ -43,7 +43,7 @@ describe('###Wrong Password', () => {
                 .set('accept', 'application/json')
                 .send({ ...invalidPassword })
                 .end((err, res) => {
-                    console.log(res.body)
+                   // console.log(res.body)
                     expect(res.statusCode).to.equal(401);
                     expect(res.body).to.include.keys('error');
                     done(err);

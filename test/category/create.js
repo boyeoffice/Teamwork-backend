@@ -58,7 +58,7 @@ describe('Try to submit valid form /category', () => {
 			.set('accept', 'application/json')
 			.set('Authorization', token)
 			.end((err, res) => {
-				console.log(res.body)
+				//console.log(res.body)
 				categoryId = '/v1/category/' + res.body.data.categoryId
 				expect(res.statusCode).to.equal(201);
 				expect(res.body).to.include.keys('data');
@@ -110,12 +110,12 @@ describe('Fetch single category /category', () => {
 
 describe('Update category /category', () => {
 	it('it should return response status 201', (done) => {
-		request(app).put(categoryId)
+		request(app).patch(categoryId)
 			.send({...validData})
 			.set('accept', 'application/json')
 			.set('Authorization', token)
 			.end((err, res) => {
-				console.log(res.body)
+				//console.log(res.body)
 				expect(res.statusCode).to.equal(201);
 				expect(res.body).to.include.keys('data');
         done();
@@ -125,7 +125,7 @@ describe('Update category /category', () => {
 
 describe('Update category /category', () => {
 	it('it should return response status 404', (done) => {
-		request(app).put('/v1/category/49')
+		request(app).patch('/v1/category/49')
 			.send({...validData})
 			.set('accept', 'application/json')
 			.set('Authorization', token)

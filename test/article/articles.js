@@ -117,7 +117,7 @@ describe('Article not found to comment on', () => {
 			.set('accept', 'application/json')
 			.set('Authorization', token)
 			.end((err, res) => {
-				console.log(res.body)
+				//console.log(res.body)
 				expect(res.statusCode).to.equal(404);
 				expect(res.body).to.include.keys('error');
         done();
@@ -132,7 +132,7 @@ describe('Comment on article', () => {
 			.set('accept', 'application/json')
 			.set('Authorization', token)
 			.end((err, res) => {
-				console.log(res.body)
+			//	console.log(res.body)
 				expect(res.statusCode).to.equal(201);
 				expect(res.body).to.include.keys('data');
         done();
@@ -142,7 +142,7 @@ describe('Comment on article', () => {
 
 describe('Update single article /articles', () => {
 	it('it should return response status 201', (done) => {
-		request(app).put(articleId)
+		request(app).patch(articleId)
 			.send({...validData})
 			.set('accept', 'application/json')
 			.set('Authorization', token)
