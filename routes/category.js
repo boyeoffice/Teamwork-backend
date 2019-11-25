@@ -11,8 +11,8 @@ const auth = require('../middlewares/auth');
 
 router.get('/', auth, categoryCtrl.allCategories);
 router.post('/', auth, categoryRequest, categoryCtrl.createCategory);
-router.get('/:id', auth, categoryCtrl.getSingleCategory);
-router.patch('/:id', auth, updateCategoryRequest, categoryCtrl.updateSingleCategory);
-router.delete('/:id', auth, categoryCtrl.deleteSingleCategory);
+router.get('/:categoryId', auth, categoryCtrl.getSingleCategory);
+router.patch('/:categoryId', auth, updateCategoryRequest, categoryCtrl.updateSingleCategory);
+router.delete('/:categoryId', auth, categoryCtrl.deleteSingleCategory);
 
 module.exports = router;
