@@ -8,6 +8,7 @@ const db = require('../../database');
 let token;
 let articleId;
 let gifId
+let commentId
 const { emptyData, validData } = mockData.articles;
 const { emptyComment, validComment } = commentDummy.comments;
 
@@ -163,7 +164,8 @@ describe('Comment on article', () => {
 			.set('accept', 'application/json')
 			.set('Authorization', token)
 			.end((err, res) => {
-			//	console.log(res.body)
+				//console.log(res.body)
+				commentId = '/v1/comment/' + res.body.data.commentId
 				expect(res.statusCode).to.equal(201);
 				expect(res.body).to.include.keys('data');
         done();
@@ -186,6 +188,61 @@ describe('Comment on gif', () => {
 	});
 });
 
+describe('Try to Flag empty comment', () => {
+	it('should return response 201', (done) => {
+		request(app).patch('/v1/comment/45/flag')
+			.send({status: 0})
+			.set('accept', 'application/json')
+			.set('Authorization', token)
+			.end((err, res) => {
+			//	console.log(res.body)
+				expect(res.statusCode).to.equal(404);
+				expect(res.body).to.include.keys('error');
+        done();
+			});
+	});
+});
+
+describe('Flag comment', () => {
+	it('should return response 201', (done) => {
+		request(app).patch(commentId + '/flag')
+			.send({status: 0})
+			.set('accept', 'application/json')
+			.set('Authorization', token)
+			.end((err, res) => {
+			//	console.log(res.body)
+				expect(res.statusCode).to.equal(201);
+				expect(res.body).to.include.keys('status');
+        done();
+			});
+	});
+});
+
+describe('Try to Delete empty comment', () => {
+	it('should return response 404', (done) => {
+		request(app).delete('/v1/comment/45')
+			.set('Authorization', token)
+			.end((err, res) => {
+			//	console.log(res.body)
+				expect(res.statusCode).to.equal(404);
+				expect(res.body).to.include.keys('error');
+        done();
+			});
+	});
+});
+
+describe('Delete comment', () => {
+	it('should return response 202', (done) => {
+		request(app).delete(commentId)
+			.set('Authorization', token)
+			.end((err, res) => {
+			//	console.log(res.body)
+				expect(res.statusCode).to.equal(202);
+				expect(res.body).to.include.keys('status');
+        done();
+			});
+	});
+});
 
 describe('Update single article /articles', () => {
 	it('it should return response status 201', (done) => {
