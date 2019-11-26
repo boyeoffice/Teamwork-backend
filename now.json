@@ -103,6 +103,16 @@
       "methods": ["POST"]
     },
     {
+      "src": "/v1/comment/:id",
+      "dest": "/index.js",
+      "methods": ["DELETE"]
+    },
+    {
+      "src": "/v1/comment/:id/flag",
+      "dest": "/index.js",
+      "methods": ["PATCH"]
+    },
+    {
       "src": "/v1/feed",
       "dest": "/index.js",
       "methods": ["GET"]
