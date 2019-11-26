@@ -7,6 +7,7 @@ const commentDummy = require('../utils/commentDummy');
 const db = require('../../database');
 let token;
 let articleId;
+let gifId
 const { emptyData, validData } = mockData.articles;
 const { emptyComment, validComment } = commentDummy.comments;
 
@@ -50,6 +51,7 @@ describe('Try to submit valid form /articles', () => {
 			.end((err, res) => {
 				//console.log(res.body)
 				articleId = '/v1/articles/' + res.body.data.articleId
+				gifId = '/v1/gifs/' + res.body.data.articleId
 				expect(res.statusCode).to.equal(201);
 				expect(res.body).to.include.keys('data');
         done();
@@ -96,9 +98,23 @@ describe('Fetch single article /articles', () => {
 	});
 });
 
-describe('Try submit empty comment', () => {
+describe('Try submit empty comment /:articleId/comment', () => {
 	it('should return response 422', (done) => {
 		request(app).post(articleId + '/comment')
+			.send({...emptyComment})
+			.set('accept', 'application/json')
+			.set('Authorization', token)
+			.end((err, res) => {
+				expect(res.statusCode).to.equal(422);
+				expect(res.body).to.include.keys('error');
+        done();
+			});
+	});
+});
+
+describe('Try submit empty comment /:gifId/comment', () => {
+	it('should return response 422', (done) => {
+		request(app).post(gifId + '/comment')
 			.send({...emptyComment})
 			.set('accept', 'application/json')
 			.set('Authorization', token)
@@ -125,6 +141,21 @@ describe('Article not found to comment on', () => {
 	});
 });
 
+	describe('Gif not found to comment on', () => {
+	it('should return response 404', (done) => {
+		request(app).post('/v1/gifs/34/comment')
+			.send({...validComment})
+			.set('accept', 'application/json')
+			.set('Authorization', token)
+			.end((err, res) => {
+				//console.log(res.body)
+				expect(res.statusCode).to.equal(404);
+				expect(res.body).to.include.keys('error');
+        done();
+			});
+	});
+});
+
 describe('Comment on article', () => {
 	it('should return response 201', (done) => {
 		request(app).post(articleId + '/comment')
@@ -139,6 +170,22 @@ describe('Comment on article', () => {
 			});
 	});
 });
+
+describe('Comment on gif', () => {
+	it('should return response 201', (done) => {
+		request(app).post(gifId + '/comment')
+			.send({...validComment})
+			.set('accept', 'application/json')
+			.set('Authorization', token)
+			.end((err, res) => {
+			//	console.log(res.body)
+				expect(res.statusCode).to.equal(201);
+				expect(res.body).to.include.keys('data');
+        done();
+			});
+	});
+});
+
 
 describe('Update single article /articles', () => {
 	it('it should return response status 201', (done) => {

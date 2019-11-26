@@ -4,7 +4,7 @@ const date = `${today.getFullYear()}-${(today.getMonth() + 1)}-${+today.getDate(
 const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 const dateTime = `${date} ${time}`;
 const randomId = require('../helpers/randomNumber');
-const post_type = 'article';
+//const post_type = 'article';
 
 exports.commentOnArticle = async (req, res) => {
 	try{
@@ -36,5 +36,38 @@ exports.commentOnArticle = async (req, res) => {
 		})
 	}catch(err){
 		//console.log(err)
+	}
+}
+
+exports.commentOnGif = async (req, res) => {
+	try{
+		const { comment } = req.body;
+	  const { gifId } = req.params;
+	  const createdOn = dateTime;
+	  const createdBy = req.user.userId;
+	  const commentId = randomId(10000);
+	  const gif = await db.query(`SELECT * FROM posts WHERE postId = ${gifId}`);
+	    if (gif.rows.length === 0) {
+	      return res.status(404).json({
+	        status: 'error',
+	        error: 'Article with the specified ID NOT found',
+	      });
+	    }
+	    await db.query(
+      `INSERT INTO comments (commentId, comment, createdOn, postId, authorId) 
+        VALUES ($1, $2, $3, $4, $5)`,
+      [commentId, comment, createdOn, gifId, createdBy],
+    );
+		res.status(201).json({
+			status: 'success',
+			data: {
+				createdOn,
+        gifTitle: gif.rows[0].title,
+        gif: gif.rows[0],
+        comment,
+			}
+		})
+	}catch(err){
+		console.log(err)
 	}
 }

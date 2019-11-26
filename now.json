@@ -98,6 +98,11 @@
       "methods": ["DELETE"]
     },
     {
+      "src": "/v1/gifs/:gifId/comment",
+      "dest": "/index.js",
+      "methods": ["POST"]
+    },
+    {
       "src": "/v1/feed",
       "dest": "/index.js",
       "methods": ["GET"]
