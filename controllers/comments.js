@@ -32,6 +32,7 @@ exports.commentOnArticle = async (req, res) => {
         articleTitle: article.rows[0].title,
         article: article.rows[0].article,
         comment,
+        commentId
 			}
 		})
 	}catch(err){
@@ -65,9 +66,57 @@ exports.commentOnGif = async (req, res) => {
         gifTitle: gif.rows[0].title,
         gif: gif.rows[0],
         comment,
+        commentId
 			}
 		})
 	}catch(err){
-		console.log(err)
+		//console.log(err)
+	}
+}
+
+exports.flagComment = async (req, res) => {
+	try{
+	  const Id = req.params.id;
+	  const {status} = req.body;
+	  const comment = await db.query(`SELECT * FROM comments WHERE commentId = ${Id}`);
+	    if (comment.rows.length === 0) {
+	      return res.status(404).json({
+	        status: 'error',
+	        error: 'Comment with the specified ID NOT found',
+	      });
+	    }
+	    await db.query(
+      `UPDATE comments SET status = $1 WHERE commentId = ${Id}`,
+      [status],
+    );
+		res.status(201).json({
+			status: 'success',
+			Id
+		})
+	}catch(err){
+		//console.log(err)
+	}
+}
+
+exports.deleteComment = async (req, res) => {
+	try{
+	  const Id = req.params.id;
+	  let status = 0;
+	  const comment = await db.query(`SELECT * FROM comments WHERE commentId = ${Id}`);
+	    if (comment.rows.length === 0) {
+	      return res.status(404).json({
+	        status: 'error',
+	        error: 'Comment with the specified ID NOT found',
+	      });
+	    }
+	    await db.query(
+      `DELETE FROM comments WHERE commentId = ${Id}`
+    );
+		res.status(202).json({
+			status: 'success',
+			msg: 'Comment successfully deleted'
+		})
+	}catch(err){
+		//console.log(err)
 	}
 }
