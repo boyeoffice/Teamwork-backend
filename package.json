@@ -41,23 +41,15 @@
     "mocha": "^6.2.2",
     "morgan": "^1.9.1",
     "pg": "^7.12.1",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.2",
     "supertest": "^4.0.2",
     "validatorjs": "^3.17.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/core": "^7.7.2",
-    "@babel/node": "^7.7.0",
-    "@babel/preset-env": "^7.7.1",
-    "@babel/register": "^7.7.0",
     "coveralls": "^3.0.7",
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "jest": "^24.9.0",
-    "nyc": "^14.1.1",
-    "sequelize-cli": "^5.5.1"
+    "nyc": "^14.1.1"
   }
 }
