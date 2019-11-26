@@ -8,67 +8,67 @@
  ],
   "routes": [
     {
-      "src": "/v1/auth/signin",
+      "src": "/api/v1/auth/signin",
       "dest": "/index.js",
       "methods": ["POST"] 
     },
     {
-      "src": "/v1/auth/create-user",
+      "src": "/api/v1/auth/create-user",
       "dest": "/index.js",
       "methods": ["POST"]
     },
     {
-      "src": "/v1/articles",
+      "src": "/api/v1/articles",
       "dest": "/index.js",
       "methods": ["GET", "POST"]
     },
     {
-      "src": "/v1/articles/(?<id>[^/]+)",
+      "src": "/api/v1/articles/(?<id>[^/]+)",
       "dest": "/index.js",
       "methods": ["GET", "PATCH", "DELETE"]
     },
     {
-      "src": "/v1/articles/(?<id>[^/]+)/comment",
+      "src": "/api/v1/articles/(?<id>[^/]+)/comment",
       "dest": "/index.js",
       "methods": ["POST"]
     },
     {
-      "src": "/v1/category",
+      "src": "/api/v1/category",
       "dest": "/index.js",
       "methods": ["GET", "POST"]
     },
     {
-      "src": "/v1/category/(?<id>[^/]+)",
+      "src": "/api/v1/category/(?<id>[^/]+)",
       "dest": "/index.js",
       "methods": ["GET", "PATCH", "DELETE"]
     },
     {
-      "src": "/v1/gifs",
+      "src": "/api/v1/gifs",
       "dest": "/index.js",
       "methods": ["GET", "POST"]
     },
     {
-      "src": "/v1/gifs/(?<id>[^/]+)",
+      "src": "/api/v1/gifs/(?<id>[^/]+)",
       "dest": "/index.js",
       "methods": ["GET", "DELETE"]
     },
     {
-      "src": "/v1/gifs/(?<id>[^/]+)/comment",
+      "src": "/api/v1/gifs/(?<id>[^/]+)/comment",
       "dest": "/index.js",
       "methods": ["POST"]
     },
     {
-      "src": "/v1/comment/(?<id>[^/]+)",
+      "src": "/api/v1/comment/(?<id>[^/]+)",
       "dest": "/index.js",
       "methods": ["DELETE"]
     },
     {
-      "src": "/v1/comment/(?<id>[^/]+)/flag",
+      "src": "/api/v1/comment/(?<id>[^/]+)/flag",
       "dest": "/index.js",
       "methods": ["PATCH"]
     },
     {
-      "src": "/v1/feed",
+      "src": "/api/v1/feed",
       "dest": "/index.js",
       "methods": ["GET"]
     }
