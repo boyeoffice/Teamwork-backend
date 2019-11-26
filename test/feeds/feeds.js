@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const app = require("../../app");
 const request = require('supertest');
-const url = '/v1/feed';
+const url = '/api/v1/feed';
 //const mockData = require('../utils/articleDummy');
 //const commentDummy = require('../utils/commentDummy');
 //const db = require('../../database');
@@ -13,7 +13,7 @@ const userCredentials = {
 
 before(function(done){
   request(app)
-    .post('/v1/auth/signin')
+    .post('/api/v1/auth/signin')
     .send(userCredentials)
     .end(function(err, response){
        // console.log(response)

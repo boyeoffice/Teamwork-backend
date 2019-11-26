@@ -3,7 +3,7 @@ const category = {
 		category_name: '',
 	},
 	validData: {
-		category_name: 'Boocts',
+		category_name: 'Booctsiu',
 
 	}
 }

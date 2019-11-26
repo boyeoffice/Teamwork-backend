@@ -17,7 +17,7 @@ describe('Test server /index', () => {
 
 describe('Unauthorized /create-user', () => {
 	it('should return response status 401', (done) => {
-		request(app).post('/v1/auth/create-user')
+		request(app).post('/api/v1/auth/create-user')
 			.then((res) => {
 				expect(res.statusCode).to.equal(401);
 				 expect(res.body.status).to.equal('error');
@@ -30,7 +30,7 @@ describe('Unauthorized /create-user', () => {
 
 describe('Invalid user id /create-user', () => {
 	it('should return response status 401', (done) => {
-		request(app).post('/v1/auth/create-user')
+		request(app).post('/api/v1/auth/create-user')
 			.send({userId: 1})
 			.set('accept', 'application/json')
       .set('Authorization', 'Bearer ywghoyfsihu6ioh4uojlsgufsgohguwhle')

@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const app = require("../../app");
 const request = require('supertest');
-const url = '/v1/category';
+const url = '/api/v1/category';
 const mockData = require('../utils/categoryDummy');
 const db = require('../../database');
 let token;
@@ -15,7 +15,7 @@ const userCredentials = {
 
 before(function(done){
   request(app)
-    .post('/v1/auth/signin')
+    .post('/api/v1/auth/signin')
     .send(userCredentials)
     .end(function(err, response){
        // console.log(response)
@@ -59,7 +59,7 @@ describe('Try to submit valid form /category', () => {
 			.set('Authorization', token)
 			.end((err, res) => {
 				//console.log(res.body)
-				categoryId = '/v1/category/' + res.body.data.categoryId
+				categoryId = '/api/v1/category/' + res.body.data.categoryId
 				expect(res.statusCode).to.equal(201);
 				expect(res.body).to.include.keys('data');
         done();
@@ -97,7 +97,7 @@ describe('Fetch single category /category', () => {
 
 describe('Fetch single category /category', () => {
 	it('should return response status 404', (done) => {
-		request(app).get('/v1/category/45')
+		request(app).get('/api/v1/category/45')
 			.set('Authorization', token)
 			.end((err, res) => {
 				//console.log(categoryId)
@@ -125,7 +125,7 @@ describe('Update category /category', () => {
 
 describe('Update category /category', () => {
 	it('it should return response status 404', (done) => {
-		request(app).patch('/v1/category/49')
+		request(app).patch('/api/v1/category/49')
 			.send({...validData})
 			.set('accept', 'application/json')
 			.set('Authorization', token)
