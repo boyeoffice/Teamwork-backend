@@ -2,7 +2,7 @@ process.env.Test = 'test';
 const expect = require("chai").expect;
 const app = require("../../app");
 const request = require('supertest');
-const url = '/v1/auth/create-user';
+const url = '/api/v1/auth/create-user';
 const mockData = require('../utils/userDummy');
 const db = require('../../database');
 var agent = request.agent(app);
@@ -16,7 +16,7 @@ const userCredentials = {
 
 before(function(done){
   request(app)
-    .post('/v1/auth/signin')
+    .post('/api/v1/auth/signin')
     .send(userCredentials)
     .end(function(err, response){
        // console.log(response)

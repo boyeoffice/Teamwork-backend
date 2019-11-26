@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const app = require("../../app");
 const request = require('supertest');
-const url = '/v1/articles';
+const url = '/api/v1/articles';
 const mockData = require('../utils/articleDummy');
 const commentDummy = require('../utils/commentDummy');
 const db = require('../../database');
@@ -19,7 +19,7 @@ const userCredentials = {
 
 before(function(done){
   request(app)
-    .post('/v1/auth/signin')
+    .post('/api/v1/auth/signin')
     .send(userCredentials)
     .end(function(err, response){
        // console.log(response)
@@ -51,8 +51,8 @@ describe('Try to submit valid form /articles', () => {
 			.set('Authorization', token)
 			.end((err, res) => {
 				//console.log(res.body)
-				articleId = '/v1/articles/' + res.body.data.articleId
-				gifId = '/v1/gifs/' + res.body.data.articleId
+				articleId = '/api/v1/articles/' + res.body.data.articleId
+				gifId = '/api/v1/gifs/' + res.body.data.articleId
 				expect(res.statusCode).to.equal(201);
 				expect(res.body).to.include.keys('data');
         done();
@@ -88,7 +88,7 @@ describe('Fetch single article /articles', () => {
 
 describe('Fetch single article /articles', () => {
 	it('it should return response status 404', (done) => {
-		request(app).get('/v1/articles/56')
+		request(app).get('/api/v1/articles/56')
 			.set('Authorization', token)
 			.end((err, res) => {
 				//console.log(res.body)
@@ -129,7 +129,7 @@ describe('Try submit empty comment /:gifId/comment', () => {
 
 describe('Article not found to comment on', () => {
 	it('should return response 404', (done) => {
-		request(app).post('/v1/articles/34/comment')
+		request(app).post('/api/v1/articles/34/comment')
 			.send({...validComment})
 			.set('accept', 'application/json')
 			.set('Authorization', token)
@@ -144,7 +144,7 @@ describe('Article not found to comment on', () => {
 
 	describe('Gif not found to comment on', () => {
 	it('should return response 404', (done) => {
-		request(app).post('/v1/gifs/34/comment')
+		request(app).post('/api/v1/gifs/34/comment')
 			.send({...validComment})
 			.set('accept', 'application/json')
 			.set('Authorization', token)
@@ -165,7 +165,7 @@ describe('Comment on article', () => {
 			.set('Authorization', token)
 			.end((err, res) => {
 				//console.log(res.body)
-				commentId = '/v1/comment/' + res.body.data.commentId
+				commentId = '/api/v1/comment/' + res.body.data.commentId
 				expect(res.statusCode).to.equal(201);
 				expect(res.body).to.include.keys('data');
         done();
@@ -190,7 +190,7 @@ describe('Comment on gif', () => {
 
 describe('Try to Flag empty comment', () => {
 	it('should return response 201', (done) => {
-		request(app).patch('/v1/comment/45/flag')
+		request(app).patch('/api/v1/comment/45/flag')
 			.send({status: 0})
 			.set('accept', 'application/json')
 			.set('Authorization', token)
@@ -220,7 +220,7 @@ describe('Flag comment', () => {
 
 describe('Try to Delete empty comment', () => {
 	it('should return response 404', (done) => {
-		request(app).delete('/v1/comment/45')
+		request(app).delete('/api/v1/comment/45')
 			.set('Authorization', token)
 			.end((err, res) => {
 			//	console.log(res.body)

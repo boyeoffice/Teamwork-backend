@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const app = require("../../app");
 const request = require('supertest');
-const url = '/v1/auth/signin';
+const url = '/api/v1/auth/signin';
 const mockData = require('../utils/userDummy');
 
 const {validDetails, invalidEmail, invalidPassword} = mockData.login
