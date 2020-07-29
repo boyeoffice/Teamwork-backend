@@ -4,6 +4,8 @@
   "description": "Teamwork is an ​ internal social network for employees of an organization",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
