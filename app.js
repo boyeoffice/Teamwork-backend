@@ -7,10 +7,10 @@ app.use(express.json());
 // app.use(express.urlencoded({extend: true}));
 
 app.get('/', (req, res) => {
-    res.send({
-        status: 'success',
-        messages: 'Welcome to teamwork project.'
-    });
+  res.send({
+    status: 'success',
+    messages: 'Welcome to teamwork project.',
+  });
 });
 
 module.exports = app;
