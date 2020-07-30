@@ -18,4 +18,15 @@ const createUsersTable = async () => {
     }
 };
 
-module.exports = createUsersTable;
+const dropUsersTable = async () => {
+    try {
+        await db.query('DROP TABLE IF EXISTS users');
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+module.exports = {
+    createUsersTable,
+    dropUsersTable,
+};

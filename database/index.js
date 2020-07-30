@@ -1,3 +1,17 @@
-const userMigration = require('./migrations/userMigration');
+const { createUsersTable, dropUsersTable } = require('./migrations/userMigration');
 
-userMigration();
+const createAllTables = () => {
+    createUsersTable();
+};
+
+const dropAllTables = () => {
+    dropUsersTable();
+    console.log('Table dropped');
+};
+
+module.exports = {
+    createAllTables,
+    dropAllTables,
+};
+
+require('make-runnable');

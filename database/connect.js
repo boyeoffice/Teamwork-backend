@@ -7,14 +7,18 @@ const pool = new Pool({
     connectionString: process.env.DB_URL,
 });
 
-// a generic query, that executes all queries you send to it
-function query(data, value) {
+/**
+ * DB Query
+ * @param {object} req
+ * @param {object} res
+ * @returns {object} object
+ */
+function query(queryText, params) {
     return new Promise((resolve, reject) => {
         pool
-            .query(data, value)
+            .query(queryText, params)
             .then((res) => {
                 resolve(res);
-                pool.end();
             })
             .catch((err) => {
                 reject(err);
