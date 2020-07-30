@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node start",
+    "migrate": "node database",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
