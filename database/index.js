@@ -1,7 +1,7 @@
-const { createUsersTable, dropUsersTable } = require('./migrations/userMigration');
-const { createPostsTable, dropPostsTable } = require('./migrations/postMigration');
-const { createCategoriesTable, dropCategoriesTable } = require('./migrations/categoryMigration');
-const { createCommentsTable, dropCommentsTable } = require('./migrations/commentsMigration');
+const { createUsersTable, dropUsersTable } = require('./migrations/user.migration');
+const { createPostsTable, dropPostsTable } = require('./migrations/post.migration');
+const { createCategoriesTable, dropCategoriesTable } = require('./migrations/category.migration');
+const { createCommentsTable, dropCommentsTable } = require('./migrations/comment.migration');
 
 const createAllTables = () => {
     createUsersTable();
