@@ -2,11 +2,12 @@ const bcrypt = require('bcrypt');
 
 const db = require('../connect');
 const randomId = require('../../helpers/randomNumber');
+const date = require('../../helpers/date.js');
 
-const today = new Date();
-const date = `${today.getFullYear()}-${(today.getMonth() + 1)}-${+today.getDate()}`;
-const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
-const dateTime = `${date} ${time}`;
+// const today = new Date();
+// const date = `${today.getFullYear()}-${(today.getMonth() + 1)}-${+today.getDate()}`;
+// const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+// const dateTime = `${date} ${time}`;
 
 const id = randomId(1000000);
 const firstName = 'Olakunle';
@@ -37,7 +38,7 @@ const seed = async () => {
                 department,
                 address,
                 isAdmin,
-                dateTime,
+                date,
             ],
         );
     } catch (e) {
