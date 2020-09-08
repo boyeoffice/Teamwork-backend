@@ -3,6 +3,8 @@
 const db = require('../database/connect');
 const verifyPassword = require('../helpers/verifyPassword');
 const generateToken = require('../helpers/createToken');
+const transport = require('../helpers/mail');
+const env = require('../env');
 
 exports.login = async (data) => {
     try {
@@ -27,6 +29,36 @@ exports.login = async (data) => {
         });
         return {
             token,
+            user: user.rows[0],
+        };
+    } catch (e) {
+        const err = {
+            code: e.code,
+            message: e.message || e.toString(),
+        };
+        throw err;
+    }
+};
+
+exports.forgotPassword = async (data) => {
+    try {
+        const { email } = data;
+        const user = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+        if (user.rows.length === 0) {
+            const err = {
+                code: 404,
+                message: 'Invalid email',
+            };
+            throw err;
+        }
+        await transport.sendMail({
+            from: `${env.app_name} 👻 ${env.mail_from}`,
+            to: email,
+            subject: 'Forgot Password ✔',
+            html: '<b>Hello World</b>',
+        });
+        return {
+            // token,
             user: user.rows[0],
         };
     } catch (e) {
