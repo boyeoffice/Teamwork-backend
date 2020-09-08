@@ -41,12 +41,16 @@ const seed = async () => {
                 date,
             ],
         );
+        console.log('Admin seeded');
     } catch (e) {
         console.log(e);
     }
 };
 
-const seedAdmin = () => seed();
+const seedAdmin = async () => {
+    await seed();
+    db.end();
+};
 
 module.exports = seedAdmin;
 

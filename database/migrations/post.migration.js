@@ -13,6 +13,8 @@ const createPostsTable = async () => {
             post_type VARCHAR (20) NOT NULL,
             is_public BOOL DEFAULT(false)
         )`);
+        console.log('Posts table migrated');
+        // await db.end();
     } catch (error) {
         console.log(error);
     }
@@ -21,6 +23,8 @@ const createPostsTable = async () => {
 const dropPostsTable = async () => {
     try {
         await db.query('DROP TABLE IF EXISTS posts');
+        console.log('Posts table dropped');
+        // await db.end();
     } catch (error) {
         console.log(error);
     }

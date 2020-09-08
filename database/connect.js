@@ -28,4 +28,8 @@ function query(queryText, params) {
             });
     });
 }
-module.exports = { query };
+
+function end() {
+    return pool.end();
+}
+module.exports = { query, end };

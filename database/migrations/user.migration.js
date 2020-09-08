@@ -14,6 +14,8 @@ const createUsersTable = async () => {
             address VARCHAR (50) NOT NULL,
             is_admin BOOL DEFAULT(false),
             created_on timestamp with time zone NOT NULL )`);
+        console.log('Users table migrated');
+        // await db.end();
     } catch (error) {
         console.log(error);
     }
@@ -22,6 +24,8 @@ const createUsersTable = async () => {
 const dropUsersTable = async () => {
     try {
         await db.query('DROP TABLE IF EXISTS users');
+        console.log('Users table dropped');
+        // await db.end();
     } catch (error) {
         console.log(error);
     }
