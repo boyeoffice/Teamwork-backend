@@ -10,7 +10,8 @@ const createCommentsTable = async () => {
                     user_id INTEGER NOT NULL,
                     status INTEGER NOT NULL DEFAULT 1
                     )`);
-        console.log('Table created successfully');
+        console.log('Comments table migrated');
+        // await db.end();
     } catch (error) {
         console.log(error);
     }
@@ -19,6 +20,8 @@ const createCommentsTable = async () => {
 const dropCommentsTable = async () => {
     try {
         await db.query('DROP TABLE IF EXISTS comments');
+        console.log('Comments table dropped');
+        // await db.end();
     } catch (error) {
         console.log(error);
     }

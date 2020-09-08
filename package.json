@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
+    "test:dev": "NODE_ENV=test npm run test",
     "start": "node index.js",
     "seed": "node database/seeders/admin.seeder adminSeed",
     "migrate": "node database createAllTables",
