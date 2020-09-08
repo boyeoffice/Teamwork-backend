@@ -21,10 +21,12 @@ function query(queryText, params) {
             .query(queryText, params)
             .then((res) => {
                 resolve(res);
+                // console.log(res.Result.command);
             })
             .catch((err) => {
                 reject(err);
-                pool.end();
+                // end();
+                // console.log(err.severity);
             });
     });
 }
@@ -32,4 +34,8 @@ function query(queryText, params) {
 function end() {
     return pool.end();
 }
-module.exports = { query, end };
+
+module.exports = {
+    query,
+    end,
+};
