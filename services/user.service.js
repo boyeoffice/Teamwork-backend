@@ -3,7 +3,8 @@
 const db = require('../database/connect');
 const verifyPassword = require('../helpers/verifyPassword');
 const generateToken = require('../helpers/createToken');
-const forgotPasswordMail = require('./mail.service');
+const transport = require('../helpers/mail');
+const env = require('../env');
 
 exports.login = async (data) => {
     try {
@@ -50,7 +51,12 @@ exports.forgotPassword = async (data) => {
             };
             throw err;
         }
-        await forgotPasswordMail(data);
+        await transport.sendMail({
+            from: `${env.app_name} 👻 ${env.mail_from}`,
+            to: email,
+            subject: 'Forgot Password ✔',
+            html: '<b>Hello World</b>',
+        });
         return {
             // token,
             user: user.rows[0],
