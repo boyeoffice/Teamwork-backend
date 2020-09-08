@@ -9,7 +9,8 @@
     "seed": "node database/seeders/admin.seeder adminSeed",
     "migrate": "node database createAllTables",
     "migrate:rollback": "node database dropAllTables",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive --exit --timeout 120000",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -40,7 +41,9 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "jest": "^26.4.2",
+    "mocha": "^8.1.3",
     "nodemon": "^2.0.4",
+    "nyc": "^15.1.0",
     "supertest": "^4.0.2"
   }
 }

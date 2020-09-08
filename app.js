@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/v1/auth', loginRouter);
+app.use('/api/v1/auth', loginRouter);
 
 app.use((req, res, next) => {
     next(createError(404));
