@@ -21,7 +21,9 @@ describe('Test login', () => {
                 done();
             });
     });
+});
 
+describe('### invalid user', () => {
     it('should login invalid user', (done) => {
         request(app)
             .post(url)
@@ -34,7 +36,9 @@ describe('Test login', () => {
                 done();
             });
     });
+});
 
+describe('### invalid data', () => {
     it('should login user with empty data', (done) => {
         request(app)
             .post(url)
