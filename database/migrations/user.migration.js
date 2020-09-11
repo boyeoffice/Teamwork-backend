@@ -13,7 +13,8 @@ const createUsersTable = async () => {
             department VARCHAR (50) NOT NULL,
             address VARCHAR (50) NOT NULL,
             is_admin BOOL DEFAULT(false),
-            created_on timestamp with time zone NOT NULL )`);
+            created_on timestamp with time zone NOT NULL 
+        )`);
         console.log('Users table migrated');
         // await db.end();
     } catch (error) {

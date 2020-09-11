@@ -5,6 +5,8 @@ const verifyPassword = require('../helpers/verifyPassword');
 const generateToken = require('../helpers/createToken');
 const transport = require('../helpers/mail');
 const env = require('../env');
+const randomId = require('../helpers/randomNumber');
+const date = require('../helpers/date.js');
 
 exports.login = async (data) => {
     try {
@@ -51,12 +53,24 @@ exports.forgotPassword = async (data) => {
             };
             throw err;
         }
+        const id = randomId(345);
+        const token = randomId(120394);
         await transport.sendMail({
             from: `${env.app_name} 👻 ${env.mail_from}`,
             to: email,
             subject: 'Forgot Password ✔',
-            html: '<b>Hello World</b>',
+            html: `<b>Hello World ${token}</b>`,
         });
+        await db.query(
+            `INSERT INTO reset_passwords (id, email, token, created_on)
+            VALUES ($1, $2, $3, $4)`,
+            [
+                id,
+                email,
+                token,
+                date,
+            ],
+        );
         return {
             // token,
             user: user.rows[0],
