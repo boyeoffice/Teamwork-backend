@@ -1,7 +1,7 @@
 const Validator = require('../helpers/validator');
 const { errorParser } = require('../helpers/parser');
 
-const employeeRequest = (req, res, next) => {
+const employeeRequest = async (req, res, next) => {
     const rules = {
         email: 'required|string|email|exist:users,email',
         first_name: 'required|string',
@@ -11,14 +11,9 @@ const employeeRequest = (req, res, next) => {
         department: 'required|string',
     };
 
-    /* function fails() {
-        validator.errors.first('email');
-    } */
-
-    Validator(req.body, rules, {}, (err, status) => {
+    await Validator(req.body, rules, {}, (err, status) => {
         if (!status) {
-            res.status(422).send(errorParser('error', 'Invalid data given', err));
-            throw err;
+            return res.status(422).send(errorParser('error', 'Invalid data given', err));
         }
         next();
     });
