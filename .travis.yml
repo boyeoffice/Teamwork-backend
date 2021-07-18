@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - "12"
+cache: npm
+
+install:
+  - npm install
+#services:
+# - postgresql
+env:
+  global:
+  - NODE_ENV=test
+before_script:
+#  - psql -c 'create database travis_ci_test;' -U postgres
+#  - psql -c "CREATE USER olakunle WITH PASSWORD null;" -U postgres
+  - npm run migrate
+  - npm run seed
+script:
+  - npm test
+after_success:
+  - npm run coverage
+  - npm run migrate:rollback

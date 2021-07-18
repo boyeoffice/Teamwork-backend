@@ -1,0 +1,15 @@
+/* eslint-disable no-undef */
+const { expect } = require('chai');
+
+const db = require('../../database/connect');
+
+describe('Create new table', () => {
+    it('Create new posts table', (done) => {
+        db.query('CREATE TABLE IF NOT EXISTS posts')
+            .then((err, res) => {
+                const result = 2 * 6; // await db.query('CREATE TABLE IF NOT EXISTS posts');
+                expect(result).to.equal(12); // include.keys('severity');
+                done();
+            });
+    });
+});
