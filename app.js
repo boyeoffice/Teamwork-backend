@@ -5,6 +5,7 @@ const cors = require('cors');
 const env = require('./env');
 
 const loginRouter = require('./routes/auth.route');
+const adminRouter = require('./routes/admin.route');
 
 // const env = require('./env');
 
@@ -42,6 +43,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/auth', loginRouter);
+app.use('/api/v1/admin', adminRouter);
 
 app.use((req, res, next) => {
     next(createError(404));
