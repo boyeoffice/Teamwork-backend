@@ -1,6 +1,6 @@
-const { successParser, errorParser } = require('../helpers/parser');
+const { successParser, errorParser } = require('../../../helpers/parser');
 
-const { login, forgotPassword } = require('../services/user.service');
+const { login /* forgotPassword */ } = require('../../services/users/login.service');
 
 exports.login = async (req, res) => {
     try {
@@ -14,7 +14,7 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.forgotPassword = async (req, res) => {
+/* exports.forgotPassword = async (req, res) => {
     try {
         const credential = req.body;
         await forgotPassword(credential);
@@ -24,4 +24,4 @@ exports.forgotPassword = async (req, res) => {
         const code = error.code || 500;
         res.status(code).json(errorParser('error', message));
     }
-};
+}; */
