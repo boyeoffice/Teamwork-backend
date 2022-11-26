@@ -1,6 +1,6 @@
 const Validator = require('validatorjs');
 
-const { errorParser } = require('../helpers/parser');
+const { errorParser } = require('../app/helpers/parser');
 
 const loginRequest = (req, res, next) => {
     const data = {
