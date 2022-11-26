@@ -1,0 +1,42 @@
+version: '3.9'
+services:
+  node:
+    build:
+      context: ./
+    ports:
+      - '5000:5000'
+    container_name: teamwork_backend
+    environment:
+      - NODE_ENV=development
+    volumes:
+       - .:/usr/app
+    #   - /usr/src/app/node_modules
+    user: node
+    command:
+      - npm
+      - run
+      - dev
+
+  postgres:
+    container_name: teamwork_db
+    image: postgres:12-alpine
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+      - ./dockerConfig/postgres-dev-init.sql:/docker-entrypoint-initdb.d/init.sql # will setup dev database teamwork_app for us
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+
+  redis:
+    container_name: teamwork_redis
+    image: redis:alpine
+    volumes:
+      - redis_volume:/data
+    ports:
+      - 6379:6379
+
+volumes:
+  postgres_volume:
+  redis_volume:
