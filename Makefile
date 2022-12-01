@@ -15,3 +15,6 @@ down:
 
 bash:
 	docker-compose exec node /bin/sh
+
+db:
+	docker-compose exec postgres /bin/sh

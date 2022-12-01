@@ -12,6 +12,7 @@ const createAllTables = async () => {
     await createCategoriesTable();
     await createCommentsTable();
     await createResetPasswordsTable();
+    return;
 };
 
 const dropAllTables = async () => {
@@ -21,6 +22,7 @@ const dropAllTables = async () => {
     await dropCommentsTable();
     await dropReestPasswordTable();
     db.end();
+    return;
     // console.log('Table dropped');
 };
 
@@ -29,6 +31,6 @@ module.exports = {
     dropAllTables,
 };
 
-require('make-runnable/custom')({
-    printOutputFrame: false,
-});
+// require('make-runnable/custom')({
+//     // printOutputFrame: false,
+// });

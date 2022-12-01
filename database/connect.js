@@ -1,41 +1,46 @@
-const { Pool } = require('pg');
-// const dotenv = require('dotenv');
+const Pool = require('pg-pool');
 
-// dotenv.config();
+const config = {
+  host: 'postgres',
+  database: 'teamwork_db',
+  user: 'teamwork',
+  password: 'teamwork',
+  port: 5432,
+  ssl: false,
+  max: 20, // set pool max size to 20
+  idleTimeoutMillis: 1000, // close idle clients after 1 second
+  connectionTimeoutMillis: 1000, // return an error after 1 second if connection could not be established
+  maxUses: 7500, // close (and replace) a connection after it has been used 7500 times (
+}
 
-const env = require('../env');
+const pool = new Pool(config);
 
-const pool = new Pool({
-    connectionString: env.database_url,
-});
-
-/**
- * DB Query
- * @param {object} req
- * @param {object} res
- * @returns {object} object
- */
 function query(queryText, params) {
-    return new Promise((resolve, reject) => {
-        pool
-            .query(queryText, params)
-            .then((res) => {
-                resolve(res);
-                // console.log(res.Result.command);
-            })
-            .catch((err) => {
-                reject(err);
-                // end();
-                // console.log(err.severity);
-            });
-    });
+  return new Promise((resolve, reject) => {
+      pool
+          .query(queryText, params)
+          .then((res) => {
+              resolve(res);
+          })
+          .catch((err) => {
+              reject(err);
+          });
+  });
 }
 
 function end() {
-    return pool.end();
+  return pool.end();
 }
 
 module.exports = {
-    query,
-    end,
+  query,
+  end,
 };
+
+
+// module.exports.query = (text, values) => {
+//   // console.log('query:', text, values)
+//   return pool.query(text, values).catch(err => {
+//     console.log(err)
+//   });
+// }
