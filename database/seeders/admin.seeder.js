@@ -43,9 +43,9 @@ const seed = async () => {
             date
           ],
       );
-    } catch (e) {
-        console.log(e);
-        return;
+    } catch (err) {
+      console.log(err)
+      return
     }
 };
 
@@ -58,5 +58,5 @@ const seedAdmin = async () => {
 module.exports = seedAdmin;
 
 require('make-runnable/custom')({
-    printOutputFrame: false,
+  printOutputFrame: false
 });

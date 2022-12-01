@@ -36,11 +36,3 @@ module.exports = {
   query,
   end,
 };
-
-
-// module.exports.query = (text, values) => {
-//   // console.log('query:', text, values)
-//   return pool.query(text, values).catch(err => {
-//     console.log(err)
-//   });
-// }

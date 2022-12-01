@@ -16,7 +16,6 @@ const createUsersTable = async () => {
             created_on timestamp with time zone NOT NULL
         )`);
         console.log('Users table migrated');
-        // await db.end();
     } catch (error) {
         console.log(error);
     }
@@ -26,9 +25,8 @@ const dropUsersTable = async () => {
     try {
         await db.query('DROP TABLE IF EXISTS users');
         console.log('Users table dropped');
-        // await db.end();
     } catch (error) {
-        // console.log(error);
+        console.log(error);
     }
 };
 
@@ -36,3 +34,7 @@ module.exports = {
     createUsersTable,
     dropUsersTable,
 };
+
+require('make-runnable/custom')({
+  printOutputFrame: false
+});

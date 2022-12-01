@@ -21,9 +21,7 @@ const dropAllTables = async () => {
     await dropCategoriesTable();
     await dropCommentsTable();
     await dropReestPasswordTable();
-    db.end();
     return;
-    // console.log('Table dropped');
 };
 
 module.exports = {
@@ -31,6 +29,6 @@ module.exports = {
     dropAllTables,
 };
 
-// require('make-runnable/custom')({
-//     // printOutputFrame: false,
-// });
+require('make-runnable/custom')({
+    printOutputFrame: false,
+});
