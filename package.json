@@ -4,12 +4,12 @@
   "description": "Teamwork is an ​ internal social network for employees of an organization",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
     "test:dev": "NODE_ENV=test npm run test",
     "start": "node index.js",
-    "seed": "node database/seeders/admin.seeder adminSeed",
-    "migrate": "node database createAllTables",
-    "migrate:rollback": "node database dropAllTables",
+    "seed": "NODE_ENV=development node database/seeders/admin.seeder adminSeed",
+    "migrate": "NODE_ENV=development node database createAllTables",
+    "migrate:rollback": "NODE_ENV=test node database dropAllTables",
     "test": "mocha --recursive --exit --timeout 120000",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },

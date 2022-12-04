@@ -6,14 +6,22 @@ const { createCategoriesTable, dropCategoriesTable } = require('./migrations/cat
 const { createCommentsTable, dropCommentsTable } = require('./migrations/comment.migration');
 const { createResetPasswordsTable, dropReestPasswordTable } = require('./migrations/reset.password.migration');
 
-const createAllTables = async () => {
-    await createUsersTable();
-    await createPostsTable();
-    await createCategoriesTable();
-    await createCommentsTable();
-    await createResetPasswordsTable();
-    return;
-};
+// const createAllTables = async () => {
+//     await createUsersTable();
+//     await createPostsTable();
+//     await createCategoriesTable();
+//     await createCommentsTable();
+//     await createResetPasswordsTable();
+//     return;
+// };
+
+const createAllTables = () => {
+  return new Promise((resolve, reject) => {
+    createUsersTable().then(res => {
+      resolve()
+    })
+  })
+}
 
 const dropAllTables = async () => {
     await dropUsersTable();

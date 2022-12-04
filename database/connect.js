@@ -3,7 +3,7 @@ const Pool = require('pg-pool');
 const env = require('../env');
 
 const config = {
-  host: 'postgres',
+  host: process.env.database_host,
   database: env.database_name,
   user: env.database_user ,
   password: env.database_pass,

@@ -1,9 +1,10 @@
 const dotenv = require('dotenv');
 
-dotenv.config();
+dotenv.config({path: `.env.${process.env.NODE_ENV}`});
 
 module.exports = {
-    database_url: process.env.DB_URL,
+    // database_url: process.env.DB_URL,
+    database_host: process.env.PG_HOST,
     database_name: process.env.PG_DB_NAME,
     database_user: process.env.PG_USER,
     database_pass: process.env.PG_PASSWORD,
