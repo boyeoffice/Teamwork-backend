@@ -4,7 +4,7 @@
   "description": "Teamwork is an ​ internal social network for employees of an organization",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon index.js",
+    "dev": "NODE_ENV=local nodemon index.js",
     "test:dev": "NODE_ENV=test npm run test",
     "start": "node index.js",
     "seed": "NODE_ENV=development node database/seeders/admin.seeder adminSeed",

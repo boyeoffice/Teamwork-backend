@@ -1,6 +1,6 @@
 const login = {
     validDetails: {
-        email: 'admin@example.com',
+        email: 'user@example.com',
         password: '123456',
     },
     invalidEmail: {

@@ -2,7 +2,7 @@ const Validator = require('validatorjs');
 
 const { errorParser } = require('../helpers/parser');
 
-const loginRequest = (req, res, next) => {
+module.exports = (req, res, next) => {
     const data = {
         email: req.body.email,
         password: req.body.password,
@@ -20,5 +20,3 @@ const loginRequest = (req, res, next) => {
 
     return next();
 };
-
-module.exports = loginRequest;
