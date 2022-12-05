@@ -1,35 +1,27 @@
-const db = require('./connect');
-
 const { createUsersTable, dropUsersTable } = require('./migrations/user.migration');
 const { createPostsTable, dropPostsTable } = require('./migrations/post.migration');
 const { createCategoriesTable, dropCategoriesTable } = require('./migrations/category.migration');
 const { createCommentsTable, dropCommentsTable } = require('./migrations/comment.migration');
-const { createResetPasswordsTable, dropReestPasswordTable } = require('./migrations/reset.password.migration');
-
-// const createAllTables = async () => {
-//     await createUsersTable();
-//     await createPostsTable();
-//     await createCategoriesTable();
-//     await createCommentsTable();
-//     await createResetPasswordsTable();
-//     return;
-// };
+const { createResetPasswordsTable, dropResetPasswordTable } = require('./migrations/reset.password.migration');
 
 const createAllTables = () => {
-  return new Promise((resolve, reject) => {
-    createUsersTable().then(res => {
-      resolve()
-    })
-  })
+  return Promise.all([
+    createUsersTable(),
+    createPostsTable(),
+    createCategoriesTable(),
+    createCommentsTable(),
+    createResetPasswordsTable()
+  ]);
 }
 
-const dropAllTables = async () => {
-    await dropUsersTable();
-    await dropPostsTable();
-    await dropCategoriesTable();
-    await dropCommentsTable();
-    await dropReestPasswordTable();
-    return;
+const dropAllTables = () => {
+  return Promise.all([
+    dropUsersTable(),
+    dropPostsTable(),
+    dropCategoriesTable(),
+    dropCommentsTable(),
+    dropResetPasswordTable()
+  ]);
 };
 
 module.exports = {
@@ -38,5 +30,5 @@ module.exports = {
 };
 
 require('make-runnable/custom')({
-    printOutputFrame: false,
+  printOutputFrame: false
 });
