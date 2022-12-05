@@ -36,10 +36,10 @@ app.use(
 
 // router
 app.get('/', (req, res) => {
-    res.send({
-        status: 'success',
-        messages: 'Welcome to teamwork project.',
-    });
+  return res.send({
+      status: 'success',
+      messages: 'Welcome to teamwork project.',
+  });
 });
 
 app.use('/api/v1/auth', loginRouter);
@@ -50,14 +50,14 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res) => {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get(env.environment) === 'development' ? err : {};
+// app.use((err, req, res) => {
+//     // set locals, only providing error in development
+//     res.locals.message = err.message;
+//     res.locals.error = req.app.get(env.environment) === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    // res.render('error');
-});
+//     // render the error page
+//     res.status(err.status || 500);
+//     // res.render('error');
+// });
 
 module.exports = app;

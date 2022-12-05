@@ -5,7 +5,7 @@ const loginService = require('../services/login.service');
 exports.login = async (req, res) => {
     try {
         const credential = req.body;
-        const userRes = await loginService.login(credential);
+        const userRes = await loginService(credential);
         return res.status(200).send(successParser('success', 'login successful.', userRes));
     } catch (error) {
         const message = error.message || error;

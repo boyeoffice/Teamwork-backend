@@ -5,6 +5,6 @@ const bcrypt = require('bcrypt');
  * @param {string} password
  * @return {Promise} Promise of true or false
  */
-const verifyPassword = (password, hash) => bcrypt.compareSync(password, hash);
 
-module.exports = verifyPassword;
+ module.exports = (password, hash) => bcrypt.compareSync(password, hash);
+
