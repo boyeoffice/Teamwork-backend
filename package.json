@@ -11,7 +11,7 @@
     "migrate": "NODE_ENV=development node database createAllTables",
     "migrate:rollback": "NODE_ENV=development node database dropAllTables",
     "test": "mocha --recursive --exit --timeout 120000",
-    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc npm run test:dev && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
