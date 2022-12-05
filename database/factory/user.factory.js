@@ -7,14 +7,14 @@ const date = require('../../helpers/date.js');
 const id = randomId(1000000);
 const firstName = 'User';
 const lastName = 'User';
-const email = 'user3@example.com';
+const email = 'user@example.com';
 const gender = 'Male';
 const jobRole = 'CTO';
 const department = 'ICT';
 const address = 'Lagos';
 const isAdmin = true;
 
-module.exports.seed = async () => {
+module.exports = async () => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash('123456', salt);
   return db.query(
@@ -35,7 +35,3 @@ module.exports.seed = async () => {
           ],
         )
 };
-
-require('make-runnable/custom')({
-  printOutputFrame: false
-});
