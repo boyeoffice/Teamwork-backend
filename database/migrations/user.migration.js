@@ -23,14 +23,14 @@ const createUsersTable = () => {
 
 
 const dropUsersTable = () => {
-      return new Promise((resolve,reject) => {
-        db.query('DROP TABLE IF EXISTS users').then(res => {
-          console.log('Users table dropped');
-          resolve();
-        }).catch(err => {
-          reject(err);
-        });
-      });
+  return new Promise((resolve,reject) => {
+    db.query('DROP TABLE IF EXISTS users').then(res => {
+      // console.log('Users table dropped');
+      resolve();
+    }).catch(err => {
+      reject(err);
+    });
+  });
 };
 
 module.exports = {

@@ -18,7 +18,6 @@ describe('Test users table', function (done) {
       expect(res.rowCount).to.equal(1)
       done();
     }).catch(err => {
-      console.log(err)
       done();
     });
   })
@@ -27,7 +26,6 @@ describe('Test users table', function (done) {
     dropUsersTable().then(res => {
       done();
     }).catch(err => {
-      console.log(err)
       done();
     });
   })
