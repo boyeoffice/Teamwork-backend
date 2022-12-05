@@ -30,8 +30,15 @@ jobs:
     - name: Install node dependencies
       run: npm ci
 
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Prepare Node Application
       run: cp .env.example .env.test
 
     - name: Run Testsuite
-      run: npm run test:dev
+      run: |
+        npm run test:dev
+        npm run coverage
