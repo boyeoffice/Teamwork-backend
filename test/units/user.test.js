@@ -2,22 +2,33 @@ const { expect } = require('chai');
 const request = require('supertest');
 
 // const { createAllTables, dropAllTables } = require('../../database');
-const { createUsersTable, dropUsersTable } = require('../../database/migrations/user.migration')
+const { createUsersTable, dropUsersTable } = require('../../database/migrations/user.migration');
+const createUser = require('../../database/factory/user.factory');
 
 describe('Test users table', function (done) {
-  beforeEach('Migrate all schema', function (done) {
+
+  beforeEach(function (done) {
     createUsersTable().then(res => {
-      done()
+      done();
     })
   })
 
-  it('Should migrate all table', (done) => {
-    console.log(process.env.PG_DB_NAME);
-    done();
+  it('Create user', (done) => {
+    createUser.seed().then(res => {
+      expect(res.rowCount).to.equal(1)
+      done();
+    }).catch(err => {
+      console.log(err)
+      done();
+    });
   })
-  afterEach('Roll back migration', (done) => {
+
+  afterEach((done) => {
     dropUsersTable().then(res => {
       done();
-    })
+    }).catch(err => {
+      console.log(err)
+      done();
+    });
   })
 })
