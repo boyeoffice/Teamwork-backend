@@ -1,4 +1,4 @@
-const { successParser, errorParser } = require('../../../helpers/parser');
+const { successParser, errorParser } = require('../../../../helpers/parser');
 
 const { login /* forgotPassword */ } = require('../../services/users/login.service');
 
