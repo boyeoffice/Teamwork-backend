@@ -35,20 +35,21 @@ const createUsersTable = async () => {
                 address VARCHAR (50) NOT NULL,
                 is_admin BOOL DEFAULT(false),
                 created_on timestamp with time zone NOT NULL
-            )`);
-      console.log('Users table migrated');
-      resolve()
+            )`).then(res => {
+              console.log('Users table migrated');
+              resolve()
+            });
     })
 };
 
 
-const dropUsersTable = async () => {
-    try {
-        await db.query('DROP TABLE IF EXISTS users');
-        console.log('Users table dropped');
-    } catch (error) {
-        console.log(error);
-    }
+const dropUsersTable = () => {
+      return new Promise((resolve) => {
+        db.query('DROP TABLE IF EXISTS users').then(res => {
+          console.log('Users table dropped');
+          resolve()
+        });
+      });
 };
 
 module.exports = {
