@@ -1,4 +1,5 @@
 const db = require('../database/connect');
+const userRes = require('../resources/user.resource')
 const verifyPassword = require('../helpers/verifyPassword');
 const generateToken = require('../helpers/createToken');
 // const transport = require('../helpers/mail');
@@ -29,7 +30,7 @@ module.exports.login = async (data) => {
       });
       return {
           token,
-          user: user.rows[0],
+          user: userRes(user.rows[0]),
       };
     } catch (e) {
       const err = {
