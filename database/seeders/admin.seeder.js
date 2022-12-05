@@ -25,8 +25,8 @@ const isAdmin = true;
 const seed = async () => {
     try {
       const salt = await bcrypt.genSalt(10);
-      const hashedPassword = bcrypt.hash('123456', salt);
-      return await db.query(
+      const hashedPassword = await bcrypt.hash('123456', salt);
+      return db.query(
           `INSERT INTO users (id, first_name, last_name, email, password, gender, job_role, department, address, is_admin, created_on)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
           [
@@ -34,12 +34,12 @@ const seed = async () => {
             firstName,
             lastName,
             email,
+            hashedPassword,
             gender,
             jobRole,
             department,
             address,
             isAdmin,
-            hashedPassword,
             date
           ],
       );

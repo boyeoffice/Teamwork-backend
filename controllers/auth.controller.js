@@ -1,16 +1,17 @@
-const { successParser, errorParser } = require('../../../../helpers/parser');
+const { successParser, errorParser } = require('../helpers/parser');
 
-const { login /* forgotPassword */ } = require('../../services/users/login.service');
+const loginService = require('../services/login.service');
 
 exports.login = async (req, res) => {
     try {
         const credential = req.body;
-        const userRes = await login(credential);
-        res.status(200).send(successParser('success', 'login successful.', userRes));
+        const userRes = await loginService.login(credential);
+        return res.status(200).send(successParser('success', 'login successful.', userRes));
     } catch (error) {
         const message = error.message || error;
-        const code = error.code || 500;
-        res.status(code).json(errorParser('error', message));
+        let code = error.code || 500;
+        if (typeof error.code === 'string') code = 500;
+        return res.status(code).json(errorParser('error', message));
     }
 };
 
