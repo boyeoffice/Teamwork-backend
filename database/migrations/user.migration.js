@@ -1,8 +1,7 @@
 const db = require('../connect');
 
 const createUsersTable = () => {
-  return new Promise((resolve, reject) => {
-    console.log('Users table migrated');
+  return Promise.resolve(
     db.query(`CREATE TABLE IF NOT EXISTS users (
               id serial PRIMARY KEY,
               first_name VARCHAR (50) NOT NULL,
@@ -15,23 +14,15 @@ const createUsersTable = () => {
               address VARCHAR (50) NOT NULL,
               is_admin BOOL DEFAULT(false),
               created_on timestamp with time zone NOT NULL
-          )`).then(res => {
-            console.log('Users table migrated');
-            resolve()
-          });
-  })
+          )`)
+  )
 };
 
 
 const dropUsersTable = () => {
-  return new Promise((resolve,reject) => {
-    db.query('DROP TABLE IF EXISTS users').then(res => {
-      console.log('Users table dropped');
-      resolve();
-    }).catch(err => {
-      reject(err);
-    });
-  });
+  return Promise.resolve(
+    db.query('DROP TABLE IF EXISTS users')
+  );
 };
 
 module.exports = {

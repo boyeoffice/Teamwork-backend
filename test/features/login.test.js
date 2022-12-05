@@ -28,7 +28,6 @@ describe('Login', () => {
   })
 
   it('should login a valid user', (done) => {
-    console.log(validDetails)
       request(app)
           .post(url)
           .set('accept', 'application/json')
