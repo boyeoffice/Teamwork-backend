@@ -11,7 +11,7 @@ jobs:
     services:
       postgres:
         image: postgres:12-alpine
-        environment:
+        env:
           POSTGRES_USER: teamwork
           POSTGRES_PASSWORD: teamwork
           POSTGRES_DB: teamwork_test_db
