@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
 
     const rules = {
         email: 'required|string|email|max:50',
-        password: 'required|string|max:6',
+        password: 'required|string|max:200',
     };
 
     const validation = new Validator(data, rules);

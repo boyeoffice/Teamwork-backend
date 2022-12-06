@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const db = require('../database/connect');
 const transport = require('../helpers/mail');
 const env = require('../env');
@@ -45,9 +47,8 @@ exports.forgotPassword = async (data) => {
 
 exports.resetPassword = async (data) => {
   try {
-    const { token } = data;
-    const resetToken= await db.query('SELECT * FROM reset_passwords WHERE token = $1', [token]);
-
+    const { reset_token, password } = data;
+    const resetToken = await db.query('SELECT * FROM reset_passwords WHERE token = $1', [reset_token]);
     if (resetToken.rows.length === 0) {
       const err = {
         code: 404,
@@ -55,6 +56,13 @@ exports.resetPassword = async (data) => {
       };
       throw err;
     }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    await db.query('UPDATE users SET password = $1 WHERE email = $2', [hashedPassword, resetToken.rows[0].email]);
+
+    await db.query('DELETE FROM reset_passwords WHERE token = $1', [reset_token]);
 
     return;
   } catch (e) {
