@@ -24,17 +24,15 @@ function query(queryText, params) {
           .then((res) => {
               resolve(res);
           })
-          .catch((err) => {
-              reject(err);
-          });
+          .catch((err) => reject(err));
   });
 }
 
-function end() {
-  return pool.end();
-}
+// function end() {
+//   return pool.end();
+// }
 
 module.exports = {
   query,
-  end,
+ //  end,
 };
