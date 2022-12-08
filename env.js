@@ -16,7 +16,7 @@ module.exports = {
     database_user: process.env.PG_USER,
     database_pass: process.env.PG_PASSWORD,
     secret: process.env.SECRET,
-    port: process.env.PORT || 5000,
+    port: process.env.PORT,
     environment: process.env.NODE_ENV,
     jwt_key: process.env.JWT_KEY,
     jwt_duration: process.env.JWT_DURATION,

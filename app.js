@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
   return res.send({
       status: 'success',
       messages: 'Welcome to teamwork project.',
-      environment: env.database_user
+      environment: env.environment
   });
 });
 

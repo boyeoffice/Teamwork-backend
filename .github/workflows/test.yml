@@ -30,8 +30,5 @@ jobs:
     - name: Install node dependencies
       run: npm ci
 
-    - name: Prepare Node Application
-      run: cp .env.example .env.test
-
     - name: Run Testsuite
-      run: npm run test:dev
+      run: npm run test
