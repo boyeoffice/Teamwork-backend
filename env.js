@@ -1,6 +1,11 @@
 const dotenv = require('dotenv');
 
-dotenv.config({path: `.env.${process.env.NODE_ENV}`});
+let path = '.env.test';
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
+  path = '.env';
+}
+
+dotenv.config({path: path});
 
 module.exports = {
     // database_url: process.env.DB_URL,

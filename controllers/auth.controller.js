@@ -11,7 +11,7 @@ exports.login = async (req, res) => {
     } catch (error) {
         const message = error.message;
         let code = error.code;
-        if (typeof error.code === 'string') code = 500;
+        if (typeof code === 'string' || code === undefined) code = 500;
         return res.status(code).json(errorParser('error', message));
     }
 };
