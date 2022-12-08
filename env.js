@@ -1,6 +1,13 @@
 const dotenv = require('dotenv');
 
-dotenv.config({path: `.env.${process.env.NODE_ENV}`});
+// let path = '.env.test';
+// if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
+//   path = '.env';
+// }
+
+const path = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'ci' ? '.env':'.env.test'
+
+dotenv.config({path: path});
 
 module.exports = {
     // database_url: process.env.DB_URL,
@@ -9,7 +16,7 @@ module.exports = {
     database_user: process.env.PG_USER,
     database_pass: process.env.PG_PASSWORD,
     secret: process.env.SECRET,
-    port: process.env.PORT || 5000,
+    port: process.env.PORT,
     environment: process.env.NODE_ENV,
     jwt_key: process.env.JWT_KEY,
     jwt_duration: process.env.JWT_DURATION,

@@ -7,8 +7,6 @@ const env = require('./env');
 const loginRouter = require('./routes/auth.route');
 // const adminRouter = require('./routes/admin.route');
 
-// const env = require('./env');
-
 const app = express();
 
 // use cors
@@ -39,6 +37,7 @@ app.get('/', (req, res) => {
   return res.send({
       status: 'success',
       messages: 'Welcome to teamwork project.',
+      environment: env.environment
   });
 });
 
