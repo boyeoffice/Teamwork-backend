@@ -31,4 +31,4 @@ jobs:
       run: npm ci
 
     - name: Run Testsuite
-      run: npm run test
+      run: npm run test:ci

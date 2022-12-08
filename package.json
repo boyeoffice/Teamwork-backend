@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon index.js",
     "test:dev": "NODE_ENV=test npm run test",
+    "test:ci": "NODE_ENV=ci npm run test",
     "test": "mocha --recursive --exit --timeout 120000",
     "coverage": "nyc npm run test && nyc report --reporter=text-lcov | coveralls",
     "coverage:dev": "nyc npm run test:dev && nyc report --reporter=text-lcov | coveralls",
