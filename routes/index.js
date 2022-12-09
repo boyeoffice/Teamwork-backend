@@ -12,8 +12,8 @@ const resetPasswordReset = require('../requests/reset.password.request');
 const { login, forgotPasswordCtrl, resetPasswordCtrl } = require('../controllers/auth.controller');
 
 router.post('/auth/login', loginRequest, login);
-router.post('/forgot/password', forgotPasswordRequest, forgotPasswordCtrl);
-router.post('/reset/password', resetPasswordReset, resetPasswordCtrl);
+router.post('/auth/forgot/password', forgotPasswordRequest, forgotPasswordCtrl);
+router.post('/auth/reset/password', resetPasswordReset, resetPasswordCtrl);
 
 const { createEmployee } = require('../controllers/employee.controller');
 

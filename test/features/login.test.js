@@ -22,7 +22,6 @@ describe('Login', () => {
         done();
       });
     }).catch(err => {
-      console.log(err)
       done()
     })
   })
