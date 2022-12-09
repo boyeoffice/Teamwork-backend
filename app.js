@@ -4,8 +4,9 @@ const cors = require('cors');
 
 const env = require('./env');
 
-const loginRouter = require('./routes/auth.route');
+// const loginRouter = require('./routes/auth.route');
 // const adminRouter = require('./routes/admin.route');
+const appRouter = require('./routes');
 
 const app = express();
 
@@ -32,7 +33,6 @@ app.use(
     }),
 );
 
-// router
 app.get('/', (req, res) => {
   return res.send({
       status: 'success',
@@ -41,8 +41,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.use('/api/v1/auth', loginRouter);
-// app.use('/api/v1/admin', adminRouter);
+app.use('/api/v1/', appRouter);
 
 app.use((req, res, next) => {
     next(createError(404));
