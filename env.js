@@ -10,8 +10,8 @@ const path = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 
 dotenv.config({path: path});
 
 module.exports = {
-    // database_url: process.env.DB_URL,
     database_host: process.env.PG_HOST,
+    database_port: process.env.PG_PORT,
     database_name: process.env.PG_DB_NAME,
     database_user: process.env.PG_USER,
     database_pass: process.env.PG_PASSWORD,
