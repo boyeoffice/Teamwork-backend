@@ -15,8 +15,9 @@ router.post('/auth/login', loginRequest, login);
 router.post('/auth/forgot/password', forgotPasswordRequest, forgotPasswordCtrl);
 router.post('/auth/reset/password', resetPasswordReset, resetPasswordCtrl);
 
-const { createEmployee } = require('../controllers/employee.controller');
+const { getEmployee, createEmployee } = require('../controllers/employee.controller');
 
+router.get('/employees', [auth], getEmployee);
 router.post('/employees', [auth], employeeRequest, createEmployee);
 
 module.exports = router;

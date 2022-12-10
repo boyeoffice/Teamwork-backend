@@ -1,8 +1,21 @@
 const bcrypt = require('bcrypt');
 
+const userRes = require('../resources/user.resource');
+
 const db = require('../database/connect');
 const randomId = require('../helpers/randomNumber');
 const date = require('../helpers/date.js');
+
+exports.index = async (data) => {
+  try {
+    const users = await db.query('SELECT * FROM users WHERE is_admin = $1', [false]);
+    return {
+      users: users.rows // userRes(users.rows)
+    }
+  } catch (err) {
+    throw err;
+  }
+}
 
 exports.create = async (data) => {
   try {
