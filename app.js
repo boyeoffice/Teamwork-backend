@@ -24,14 +24,16 @@ const corsOptions = {
 
 app.use(cors());
 
-app.use(express.json({ limit: '50mb', extended: true }));
-app.use(
-    express.urlencoded({
-        extended: true,
-        limit: '50mb',
-        parameterLimit: 50000,
-    }),
-);
+app.use(express.json({
+  limit: '50mb',
+  extended: true,
+  parameterLimit: 50000,
+}));
+app.use(express.urlencoded({
+  extended: true,
+  limit: '50mb',
+  parameterLimit: 50000,
+}));
 
 app.get('/', (req, res) => {
   return res.send({
