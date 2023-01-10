@@ -5,7 +5,7 @@ services:
       context: ./
     ports:
       - '5000:5000'
-    container_name: teamwork_backend
+    container_name: teamwork_node
     volumes:
        - .:/usr/app
     #   - /usr/src/app/node_modules
