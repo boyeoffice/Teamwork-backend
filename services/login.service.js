@@ -1,5 +1,5 @@
 const db = require('../database/connect');
-const userRes = require('../resources/user.resource')
+const userRes = require('../resources/user.resource');
 const verifyPassword = require('../helpers/verifyPassword');
 const generateToken = require('../helpers/createToken');
 
