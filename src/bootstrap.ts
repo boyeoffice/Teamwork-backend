@@ -26,9 +26,8 @@ const corsOptions = {
 
 app.use(express.json({
   limit: '50mb',
-  // extended: true,
-  // parameterLimit: 50000,
 }));
+
 app.use(express.urlencoded({
   extended: true,
   limit: '50mb',
