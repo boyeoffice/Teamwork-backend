@@ -4,7 +4,7 @@
   "description": "Teamwork is an ​ internal social network for employees of an organization",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon index.js",
+    "dev": "NODE_ENV=development ts-node-dev --respawn --pretty --transpile-only index.ts",
     "test:dev": "NODE_ENV=test npm run test",
     "test:ci": "NODE_ENV=ci npm run test",
     "test": "mocha --recursive --exit --timeout 120000",

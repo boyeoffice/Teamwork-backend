@@ -1,8 +1,8 @@
 import createError from 'http-errors';
 import express from 'express';
-// import cors from 'cors';
+import cors from 'cors';
 
-// import env from '../env';
+import env from '../env';
 
 // const loginRouter = import('./routes/auth.route');
 // const adminRouter = import('./routes/admin.route');
@@ -22,7 +22,7 @@ const corsOptions = {
     },
 }; */
 
-// app.use(cors());
+app.use(cors());
 
 app.use(express.json({
   limit: '50mb',
@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
   return res.send({
       status: 'success',
       messages: 'Welcome to teamwork project.',
-      // environment: env.environment
+      environment: env.environment
   });
 });
 
