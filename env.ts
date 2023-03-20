@@ -1,10 +1,10 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
 const path = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'ci' ? '.env':'.env.test'
 
 dotenv.config({path: path});
 
-module.exports = {
+export default {
     database_host: process.env.PG_HOST,
     database_port: process.env.PG_PORT,
     database_name: process.env.PG_DB_NAME,
