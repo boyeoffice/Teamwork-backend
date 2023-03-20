@@ -4,8 +4,8 @@ services:
     build:
       context: ./
     ports:
-      - '5000:5000'
-    container_name: teamwork_backend
+      - '3000:3000'
+    container_name: teamwork_node
     volumes:
        - .:/usr/app
     #   - /usr/src/app/node_modules

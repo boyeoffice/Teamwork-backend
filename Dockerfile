@@ -1,4 +1,5 @@
-FROM node:16.18.1
+# Pull node version 16
+FROM node:gallium
 
 RUN mkdir -p /usr/app && chown node:node /usr/app
 WORKDIR /usr/app
@@ -11,6 +12,6 @@ RUN npm install
 COPY --chown=node:node . .
 
 
-EXPOSE 5000
+EXPOSE 3000
 
 CMD ["npm","start"]
