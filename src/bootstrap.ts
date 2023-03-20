@@ -1,6 +1,6 @@
 import createError from 'http-errors';
 import express from 'express';
-import cors from 'cors';
+// import cors from 'cors';
 
 // import env from '../env';
 
@@ -22,7 +22,7 @@ const corsOptions = {
     },
 }; */
 
-app.use(cors());
+// app.use(cors());
 
 app.use(express.json({
   limit: '50mb',
