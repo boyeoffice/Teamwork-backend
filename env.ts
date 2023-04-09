@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 
-const path = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'ci' ? '.env':'.env.test'
+// const path = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'ci' ? '.env':'.env.test'
 
-dotenv.config({path: path});
+dotenv.config();
 
 export default {
     database_host: process.env.PG_HOST,
