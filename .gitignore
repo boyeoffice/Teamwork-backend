@@ -56,13 +56,10 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
-.env.test
-.env.local
-.env.development
 
 # next.js build output
 .next
 .vercel
 
 dist
+config.bat

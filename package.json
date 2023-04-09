@@ -1,16 +1,16 @@
 {
   "name": "teamwork-backend",
   "version": "1.0.0",
-  "description": "Teamwork is an ​ internal social network for employees of an organization",
+  "description": "Teamwork is an \u200b internal social network for employees of an organization",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development ts-node-dev --respawn --pretty --transpile-only index.ts",
+    "dev": "node init && NODE_ENV=development ts-node-dev --respawn --pretty --transpile-only index.ts",
     "test:dev": "NODE_ENV=test npm run test",
     "test:ci": "NODE_ENV=ci npm run test",
     "test": "mocha --recursive --exit --timeout 120000",
     "coverage": "nyc npm run test && nyc report --reporter=text-lcov | coveralls",
     "coverage:dev": "nyc npm run test:dev && nyc report --reporter=text-lcov | coveralls",
-    "start": "NODE_ENV=production node index.js",
+    "start": "node init && NODE_ENV=production node index.js",
     "seed": "NODE_ENV=development node database/seeders/admin.seeder adminSeed",
     "migrate": "NODE_ENV=development node database createAllTables",
     "migrate:rollback": "NODE_ENV=development node database dropAllTables"
@@ -46,6 +46,7 @@
     "@types/http-errors": "^2.0.1",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.3",
+    "@types/pg-pool": "^2.0.3",
     "@types/validatorjs": "^3.15.0",
     "@typescript-eslint/parser": "^5.55.0",
     "chai": "4.2.0",

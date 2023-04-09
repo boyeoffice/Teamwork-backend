@@ -1,4 +1,4 @@
-CREATE USER teamwork with encrypted password 'secret';
+--CREATE USER teamwork with encrypted password 'secret';
 -- Create Dev Database
 -- CREATE DATABASE teamwork_db;
 -- GRANT ALL PRIVILEGES ON DATABASE  teamwork_db TO teamwork;
